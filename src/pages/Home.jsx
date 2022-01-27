@@ -1,13 +1,29 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/img/Logo.svg";
 import imgOmni from "../assets/img/OmniStack11 1.png";
 import {
   TextInput,
   Title,
   InputButton,
-  MinorTitle
+  MinorTitle,
 } from "../components/elements";
 
 export function Home() {
+  const history = useNavigate();
+  const [id, setID] = useState("");
+  function registerPath() {
+    history("/register");
+  }
+
+  function handleSignIn(id) {
+    if (id === "") {
+      alert("You must put an ID");
+      return;
+    } else {
+      history("/mainRoom");
+    }
+  }
   return (
     <>
       <div className="container">
@@ -18,11 +34,17 @@ export function Home() {
             type="text"
             placeholder="Sua ID"
             style={{ width: "351px", height: "60px" }}
+            onChange={(event) => setID(event.target.value)}
+            value={id}
           />
-          <InputButton type="input" style={{ width: "351px", height: "60px" }}>
+          <InputButton
+            type="input"
+            style={{ width: "351px", height: "60px" }}
+            onClick={() => handleSignIn(id)}
+          >
             Entrar
           </InputButton>
-          <MinorTitle>Não tenho cadastro</MinorTitle>
+          <MinorTitle onClick={registerPath}>Não tenho cadastro</MinorTitle>
         </section>
         <section>
           <img

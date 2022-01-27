@@ -1,18 +1,40 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/img/Logo.svg";
 import {
   TextInput,
   Title,
   InputButton,
-  MinorTitle,
   ReturnTitle,
   Description,
 } from "../components/elements";
 
 export function Register() {
   const history = useNavigate();
+  const [ong, setOng] = useState("");
+  const [email, setEmail] = useState("");
+  const [whatsApp, setWhatsApp] = useState("");
+  const [city, setCity] = useState("");
+  const [uf, setUF] = useState("");
+
   function handleReturn() {
     history("/");
+  }
+
+  function handleRegistry() {
+    if (ong == "" || email == "" || whatsApp == "" || city == "" || uf == "") {
+      alert("Please fill all the form");
+      return;
+    }
+    const data = {
+      ong: ong,
+      email: email,
+      whatsApp: whatsApp,
+      city: city,
+      uf: uf,
+    };
+    history("/mainRoom");
+    console.log(data);
   }
   return (
     <>
@@ -30,19 +52,27 @@ export function Register() {
           <TextInput
             placeholder="Nome da ONG"
             style={{ width: "448px", height: "60px", marginTop: "8px" }}
+            onChange={(event) => setOng(event.target.value)}
+            value={ong}
           />
           <TextInput
             placeholder="E-mail"
             style={{ width: "448px", height: "60px", marginTop: "8px" }}
+            onChange={(event) => setEmail(event.target.value)}
+            value={email}
           />
           <TextInput
             placeholder="WhatsApp"
             style={{ width: "448px", height: "60px", marginTop: "8px" }}
+            onChange={(event) => setWhatsApp(event.target.value)}
+            value={whatsApp}
           />
           <div>
             <TextInput
               placeholder="Cidade"
               style={{ width: "370px", height: "60px", marginTop: "8px" }}
+              onChange={(event) => setCity(event.target.value)}
+              value={city}
             />
             <TextInput
               placeholder="UF"
@@ -52,9 +82,14 @@ export function Register() {
                 marginTop: "8px",
                 marginLeft: "8px",
               }}
+              onChange={(event) => setUF(event.target.value)}
+              value={uf}
             />
           </div>
-          <InputButton style={{ width: "448px", height: "60px" }}>
+          <InputButton
+            style={{ width: "448px", height: "60px" }}
+            onClick={handleRegistry}
+          >
             Cadastrar
           </InputButton>
         </section>
