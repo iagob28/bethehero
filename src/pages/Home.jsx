@@ -21,7 +21,7 @@ export function Home() {
       alert("You must put an ID");
       return;
     } else {
-      history("/mainRoom");
+      history("/list");
     }
   }
   return (

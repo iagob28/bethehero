@@ -32,6 +32,12 @@ export const Title = styled.h1`
   margin-top: 40px;
 `;
 
+export const SecondTitle = styled.h2`
+  font-weight: 700;
+  font-size: 14px;
+  text-align: left;
+  background: transparent;
+`;
 export const MinorTitle = styled.a`
   font-weight: 700;
   font-size: 18px;
@@ -57,6 +63,8 @@ export const Description = styled.p`
   font-weight: 400;
   fot-size: 18px;
   margin-top: 40px;
+  color: #737380;
+  background: transparent;
 `;
 
 export const InputButton = styled.button`
@@ -72,5 +80,23 @@ export const InputButton = styled.button`
   }
   :active {
     border: 1px solid #a51930;
+  }
+`;
+
+export const OffButton = styled.button`
+  background: transparent;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #dcdce5;
+  border-radius: 8px;
+  margin: 16px 0 0 8px;
+  transition: box-shadow 0.3s;
+
+  :hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #13131a32;
+  }
+  :active {
+    border: 3px solid #e02041;
   }
 `;

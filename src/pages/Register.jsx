@@ -33,7 +33,7 @@ export function Register() {
       city: city,
       uf: uf,
     };
-    history("/mainRoom");
+    history("/list");
     console.log(data);
   }
   return (
