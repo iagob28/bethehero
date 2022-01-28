@@ -28,11 +28,11 @@ export function Home() {
       users.map((user) => {
         if (user.ong === id) {
           history(`/list/${user.ong}`);
+          return user;
         } else {
           alert("User not registered");
           return;
         }
-        return;
       });
     }
   }
