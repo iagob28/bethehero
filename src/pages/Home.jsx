@@ -32,6 +32,7 @@ export function Home() {
           alert("User not registered");
           return;
         }
+        return;
       });
     }
   }
