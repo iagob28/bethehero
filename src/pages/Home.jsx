@@ -21,7 +21,7 @@ export function Home() {
       alert("You must put an ID");
       return;
     } else {
-      history("/list");
+      history(`/list/${id}`);
     }
   }
   return (
@@ -29,7 +29,7 @@ export function Home() {
       <div className="container">
         <section>
           <img src={logo} alt="Logo Be The Hero" />
-          <Title>Faça seu logon</Title>
+          <Title>Faça seu login</Title>
           <TextInput
             type="text"
             placeholder="Sua ID"

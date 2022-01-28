@@ -63,8 +63,13 @@
 .card_case {
   padding: 32px;
   background: #fff;
-  width: 479px;
+  width: 400px;
   height: 250px;
   border-radius: 8px;
   box-shadow: 0px 0px 5px #13131a46;
+}
+
+.card_list {
+  display: flex;
+  flex-wrap: wrap;
 }

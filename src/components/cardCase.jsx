@@ -1,16 +1,20 @@
 import { Description, SecondTitle } from "./elements";
 
-export function CardCase() {
+export function CardCase(card) {
   return (
     <>
-      <div className="card_case">
-        <header style={{ background:"transparent" }}>
-          <SecondTitle >Caso:</SecondTitle>
-          <Description style={{ margin: "20px 0"}}>Cadelinha atropelada</Description>
+      <div className="card_case" style={{ margin: "12px" }}>
+        <header style={{ background: "transparent" }}>
+          <SecondTitle>Caso:</SecondTitle>
+          <Description style={{ margin: "20px 0" }}>{card.title}</Description>
           <SecondTitle>Descrição:</SecondTitle>
-          <Description style={{ margin: "20px 0" }}>A cadelinha Jolie foi atropelada por um carro no bairro Santana e teve que passar por uma cirurgia às pressas</Description>
+          <Description style={{ margin: "20px 0" }}>
+            {card.description}
+          </Description>
           <SecondTitle>Valor:</SecondTitle>
-          <Description style={{ margin: "20px 0" }}>R$ 120,00</Description>
+          <Description style={{ margin: "20px 0" }}>
+            {card.donation}
+          </Description>
         </header>
       </div>
     </>

@@ -34,7 +34,6 @@ export function Register() {
       uf: uf,
     };
     history("/list");
-    console.log(data);
   }
   return (
     <>
