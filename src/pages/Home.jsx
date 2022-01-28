@@ -31,7 +31,7 @@ export function Home() {
           return user;
         } else {
           alert("User not registered");
-          return;
+          return user;
         }
       });
     }
