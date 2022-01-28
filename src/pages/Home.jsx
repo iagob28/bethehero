@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/img/Logo.svg";
 import imgOmni from "../assets/img/OmniStack11 1.png";
@@ -8,10 +8,14 @@ import {
   InputButton,
   MinorTitle,
 } from "../components/elements";
+import { LoginContext } from "../contexts/LoginContext";
 
 export function Home() {
   const history = useNavigate();
   const [id, setID] = useState("");
+
+  const { users } = useContext(LoginContext);
+
   function registerPath() {
     history("/register");
   }
@@ -21,7 +25,14 @@ export function Home() {
       alert("You must put an ID");
       return;
     } else {
-      history(`/list/${id}`);
+      users.map((user) => {
+        if (user.ong === id) {
+          history(`/list/${user.ong}`);
+        } else {
+          alert("User not registered");
+          return;
+        }
+      });
     }
   }
   return (

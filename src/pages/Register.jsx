@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { LoginContext } from "../contexts/LoginContext";
+
 import logo from "../assets/img/Logo.svg";
 import {
   TextInput,
@@ -11,11 +14,14 @@ import {
 
 export function Register() {
   const history = useNavigate();
+
   const [ong, setOng] = useState("");
   const [email, setEmail] = useState("");
   const [whatsApp, setWhatsApp] = useState("");
   const [city, setCity] = useState("");
   const [uf, setUF] = useState("");
+
+  const { createNewUser } = useContext(LoginContext);
 
   function handleReturn() {
     history("/");
@@ -26,14 +32,8 @@ export function Register() {
       alert("Please fill all the form");
       return;
     }
-    const data = {
-      ong: ong,
-      email: email,
-      whatsApp: whatsApp,
-      city: city,
-      uf: uf,
-    };
-    history("/list");
+    createNewUser(ong, email, whatsApp, city, uf);
+    history(`/list/${ong}`);
   }
   return (
     <>

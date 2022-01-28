@@ -16,8 +16,7 @@ export function NewCase() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [donation, setDonation] = useState("");
-  const { createNewCase, cases } = useContext(CasesContext);
-  const [id, setId] = useState("");
+  const { createNewCase } = useContext(CasesContext);
 
   function handleReturn() {
     history(`/list/${params.id}`);

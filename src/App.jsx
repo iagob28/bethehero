@@ -1,13 +1,19 @@
-import { Home } from "./pages/Home.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+
+import { CasesContext } from "./contexts/CaseContext.jsx";
+import { LoginContext } from "./contexts/LoginContext.jsx";
+
+import "./styles/App.css";
+
+import { Home } from "./pages/Home.jsx";
 import { Register } from "./pages/Register.jsx";
 import { List } from "./pages/List.jsx";
 import { NewCase } from "./pages/NewCase.jsx";
-import "./styles/App.css";
-import { CasesContext } from "./contexts/CaseContext.jsx";
-import { useState } from "react";
+
 function App() {
   const [cases, setCases] = useState([]);
+  const [users, setUsers] = useState([]);
   function createNewCase(title, description, donation, id) {
     setCases((state) => [
       ...state,
@@ -19,17 +25,35 @@ function App() {
       },
     ]);
   }
+
+  function createNewUser(ong, email, whatsApp, city, uf) {
+    setUsers((state) => [
+      ...state,
+      {
+        ong: ong,
+        email: email,
+        whatsApp: whatsApp,
+        city: city,
+        uf: uf,
+        key: ong,
+      },
+    ]);
+  }
   return (
-    <CasesContext.Provider value={{ cases, createNewCase }}>
+    <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/list/:id/*" element={<List />} />
-          <Route path="/list/:id/newcase/*" element={<NewCase />} />
-        </Routes>
+        <LoginContext.Provider value={{ users, createNewUser }}>
+          <CasesContext.Provider value={{ cases, createNewCase }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/list/:id/*" element={<List />} />
+              <Route path="/list/:id/newcase/*" element={<NewCase />} />
+            </Routes>
+          </CasesContext.Provider>
+        </LoginContext.Provider>
       </BrowserRouter>
-    </CasesContext.Provider>
+    </>
   );
 }
 
