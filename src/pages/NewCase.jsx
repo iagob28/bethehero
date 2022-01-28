@@ -28,7 +28,7 @@ export function NewCase() {
 
   function handleCaseRegistry(event) {
     event.preventDefault();
-    if (title == "" || description == "" || donation == "") {
+    if (title === "" || description === "" || donation === "") {
       alert("Please fill all the form");
       return;
     }

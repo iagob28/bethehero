@@ -28,7 +28,13 @@ export function Register() {
   }
 
   function handleRegistry() {
-    if (ong == "" || email == "" || whatsApp == "" || city == "" || uf == "") {
+    if (
+      ong === "" ||
+      email === "" ||
+      whatsApp === "" ||
+      city === "" ||
+      uf === ""
+    ) {
       alert("Please fill all the form");
       return;
     }
