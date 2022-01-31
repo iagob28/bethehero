@@ -17,6 +17,7 @@ import * as yup from "yup";
 const userObject = yup.object({
   ong: yup.string().required(),
   email: yup.string().email().required(),
+  password: yup.string().required().min(8),
   whatsApp: yup.string().required(),
   city: yup.string().required(),
   uf: yup.string().required(),
@@ -34,8 +35,13 @@ export function Register() {
 
   const { createNewUser } = useContext(LoginContext);
 
-  const users = (data) => {
-    createNewUser(data.ong, data.email, data.whatsApp, data.city, data.uf);
+  const users = async (data) => {
+    try {
+      await createNewUser(data.email, data.password);
+    } catch (error) {
+      alert(error);
+      return;
+    }
     history(`/list/${data.ong}`);
   };
 
@@ -61,6 +67,12 @@ export function Register() {
             <p className="error">{errors.ong?.message}</p>
             <TextInput placeholder="E-mail" {...register("email")} />
             <p className="error">{errors.email?.message}</p>
+            <TextInput
+              type="password"
+              placeholder="Senha"
+              {...register("password")}
+            />
+            <p className="error">{errors.password?.message}</p>
             <TextInput placeholder="WhatsApp" {...register("whatsApp")} />
             <p className="error">{errors.whatsApp?.message}</p>
             <div>

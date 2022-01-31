@@ -1,9 +1,10 @@
 //React
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 //Contexts
 import { CardCase } from "../components/cardCase.jsx";
 import { CasesContext } from "../contexts/CaseContext";
+import { useAuth } from "../hooks/useAuth";
 //Components
 import { Description } from "../components/texts.js";
 import { InputButton, OffButton } from "../components/buttons.js";
@@ -12,20 +13,24 @@ import { Title } from "../components/titles.js";
 import logo from "../assets/img/Logo.svg";
 import off from "../assets/img/off.png";
 
-
-
-
 export function List() {
   const params = useParams();
   const history = useNavigate();
   const { cases } = useContext(CasesContext);
+  const { user, userSignOut } = useAuth();
+  console.log(user);
+  useEffect(() => {
+    if (user.id === "" || user.id === undefined) {
+      history("/");
+    }
+  });
 
   function handleCreateCase() {
     history(`/list/${params.id}/newcase`);
   }
 
   function handleOff() {
-    history("/");
+    userSignOut();
   }
   return (
     <>

@@ -1,8 +1,8 @@
 //React
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 //Contexts
-import { LoginContext } from "../contexts/LoginContext";
+
 //Components
 import { TextInput } from "../components/texts.js";
 import { Title, LinkTitle } from "../components/titles.js";
@@ -10,56 +10,71 @@ import { InputButton } from "../components/buttons.js";
 //imgs
 import logo from "../assets/img/Logo.svg";
 import imgOmni from "../assets/img/OmniStack11 1.png";
+//form
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-
+const userObject = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required().min(8),
+});
 
 export function Home() {
   const history = useNavigate();
-  const [id, setID] = useState("");
+  const { user, userSignIn } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(userObject),
+  });
+  
+  if(user){
+    history(`/list/${user.email}`)
+  }
 
-  const { users } = useContext(LoginContext);
+  const userData = (data) => {
+    try {
+      userSignIn(data.email, data.password);
+    } catch (error) {
+      alert(error);
+      return;
+    }
+  };
 
   function registerPath() {
     history("/register");
   }
 
-  function handleSignIn(id) {
-    if (id === "") {
-      alert("You must put an ID");
-      return;
-    } else {
-      users.map((user) => {
-        if (user.ong === id) {
-          history(`/list/${user.ong}`);
-          return user;
-        } else {
-          alert("User not registered");
-          return user;
-        }
-      });
-    }
-  }
   return (
     <>
       <div className="container">
         <section>
           <img src={logo} alt="Logo Be The Hero" />
           <Title>Faça seu login</Title>
-          <TextInput
-            type="text"
-            placeholder="Sua ID"
-            style={{ width: "351px", height: "60px" }}
-            onChange={(event) => setID(event.target.value)}
-            value={id}
-          />
-          <InputButton
-            type="text"
-            style={{ width: "351px", height: "60px" }}
-            onClick={() => handleSignIn(id)}
-          >
-            Entrar
-          </InputButton>
-          <LinkTitle onClick={registerPath}>Não tenho cadastro</LinkTitle>
+          <form onSubmit={handleSubmit(userData)}>
+            <TextInput
+              type="text"
+              placeholder="E-mail"
+              style={{ width: "351px", height: "60px" }}
+              {...register("email")}
+            />
+            <TextInput
+              type="password"
+              placeholder="Senha"
+              style={{ width: "351px", height: "60px" }}
+              {...register("password")}
+            />
+            <InputButton
+              type="submit"
+              style={{ width: "351px", height: "60px" }}
+            >
+              Entrar
+            </InputButton>
+            <LinkTitle onClick={registerPath}>Não tenho cadastro</LinkTitle>
+          </form>
         </section>
         <section>
           <img

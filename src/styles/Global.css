@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.container section {
+.container section form {
   display: flex;
   flex-direction: column;
   justify-content: left;
