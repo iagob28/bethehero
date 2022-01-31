@@ -1,4 +1,5 @@
-import { Description, SecondTitle } from "./elements";
+import { Description } from "./texts.js";
+import { SecondTitle } from "./titles.js";
 
 export function CardCase(card) {
   return (

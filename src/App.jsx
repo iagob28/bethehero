@@ -4,7 +4,10 @@ import { useState } from "react";
 import { CasesContext } from "./contexts/CaseContext.jsx";
 import { LoginContext } from "./contexts/LoginContext.jsx";
 
-import "./styles/App.css";
+import "./styles/Global.css";
+import "./styles/List.css"
+import "./styles/Register.css"
+import "./styles/CardCase.css"
 
 import { Home } from "./pages/Home.jsx";
 import { Register } from "./pages/Register.jsx";

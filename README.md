@@ -11,4 +11,4 @@ https://bethehero-8fyq0wxqh-iagob28.vercel.app
 ## Preview
 ![bethehero](https://user-images.githubusercontent.com/61669995/151429426-1903bef1-1773-4575-9007-73f51c3d64fb.JPG)
 
-#### Thank for helping!
+#### Thank you for seeing!

@@ -4,13 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext";
 
 import logo from "../assets/img/Logo.svg";
-import {
-  TextInput,
-  Title,
-  InputButton,
-  ReturnTitle,
-  Description,
-} from "../components/elements";
+
+import { Title, ReturnTitle } from "../components/titles.js";
+import { InputButton } from "../components/buttons.js";
+import { TextInput, Description } from "../components/texts.js";
 
 export function Register() {
   const history = useNavigate();
@@ -56,26 +53,23 @@ export function Register() {
         <section>
           <TextInput
             placeholder="Nome da ONG"
-            style={{ width: "448px", height: "60px", marginTop: "8px" }}
             onChange={(event) => setOng(event.target.value)}
             value={ong}
           />
           <TextInput
             placeholder="E-mail"
-            style={{ width: "448px", height: "60px", marginTop: "8px" }}
             onChange={(event) => setEmail(event.target.value)}
             value={email}
           />
           <TextInput
             placeholder="WhatsApp"
-            style={{ width: "448px", height: "60px", marginTop: "8px" }}
             onChange={(event) => setWhatsApp(event.target.value)}
             value={whatsApp}
           />
           <div>
             <TextInput
               placeholder="Cidade"
-              style={{ width: "370px", height: "60px", marginTop: "8px" }}
+              style={{ width: "370px" }}
               onChange={(event) => setCity(event.target.value)}
               value={city}
             />
@@ -83,18 +77,13 @@ export function Register() {
               placeholder="UF"
               style={{
                 width: "70px",
-                height: "60px",
-                marginTop: "8px",
                 marginLeft: "8px",
               }}
               onChange={(event) => setUF(event.target.value)}
               value={uf}
             />
           </div>
-          <InputButton
-            style={{ width: "448px", height: "60px" }}
-            onClick={handleRegistry}
-          >
+          <InputButton style={{ width: "448px" }} onClick={handleRegistry}>
             Cadastrar
           </InputButton>
         </section>

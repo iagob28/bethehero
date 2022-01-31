@@ -1,13 +1,16 @@
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import logo from "../assets/img/Logo.svg";
+
+import { Title, ReturnTitle } from "../components/titles.js";
+import { InputButton } from "../components/buttons.js";
 import {
   TextInput,
-  Title,
-  InputButton,
-  ReturnTitle,
   Description,
-} from "../components/elements";
+  DescriptionInput,
+} from "../components/texts.js";
+
 import { CasesContext } from "../contexts/CaseContext";
 
 export function NewCase() {
@@ -51,19 +54,16 @@ export function NewCase() {
         <section>
           <TextInput
             placeholder="Título do caso"
-            style={{ width: "448px", height: "60px", marginTop: "8px" }}
             onChange={(event) => setTitle(event.target.value)}
             value={title}
           />
-          <TextInput
+          <DescriptionInput
             placeholder="Descrição"
-            style={{ width: "448px", height: "175px", marginTop: "8px" }}
             onChange={(event) => setDescription(event.target.value)}
             value={description}
           />
           <TextInput
             placeholder="Valor em reais"
-            style={{ width: "448px", height: "60px", marginTop: "8px" }}
             onChange={(event) => setDonation(event.target.value)}
             value={donation}
           />
@@ -71,7 +71,6 @@ export function NewCase() {
             <InputButton
               style={{
                 width: "168px",
-                height: "60px",
                 background: "transparent",
                 color: "#41414D",
                 fontWeight: "700",
@@ -82,7 +81,7 @@ export function NewCase() {
               Cancelar
             </InputButton>
             <InputButton
-              style={{ width: "263px", height: "60px", marginLeft: "17px" }}
+              style={{ width: "263px", marginLeft: "17px" }}
               onClick={handleCaseRegistry}
             >
               Cadastrar

@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import logo from "../assets/img/Logo.svg";
 import imgOmni from "../assets/img/OmniStack11 1.png";
-import {
-  TextInput,
-  Title,
-  InputButton,
-  MinorTitle,
-} from "../components/elements";
+
+import { TextInput } from "../components/texts.js";
+import { Title, LinkTitle } from "../components/titles.js";
+import { InputButton } from "../components/buttons.js";
+
 import { LoginContext } from "../contexts/LoginContext";
 
 export function Home() {
@@ -50,13 +50,13 @@ export function Home() {
             value={id}
           />
           <InputButton
-            type="input"
+            type="text"
             style={{ width: "351px", height: "60px" }}
             onClick={() => handleSignIn(id)}
           >
             Entrar
           </InputButton>
-          <MinorTitle onClick={registerPath}>Não tenho cadastro</MinorTitle>
+          <LinkTitle onClick={registerPath}>Não tenho cadastro</LinkTitle>
         </section>
         <section>
           <img
