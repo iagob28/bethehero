@@ -1,14 +1,17 @@
+//React
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import logo from "../assets/img/Logo.svg";
-import imgOmni from "../assets/img/OmniStack11 1.png";
-
+//Contexts
+import { LoginContext } from "../contexts/LoginContext";
+//Components
 import { TextInput } from "../components/texts.js";
 import { Title, LinkTitle } from "../components/titles.js";
 import { InputButton } from "../components/buttons.js";
+//imgs
+import logo from "../assets/img/Logo.svg";
+import imgOmni from "../assets/img/OmniStack11 1.png";
 
-import { LoginContext } from "../contexts/LoginContext";
+
 
 export function Home() {
   const history = useNavigate();

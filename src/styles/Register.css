@@ -1,4 +1,3 @@
-
 .box_register {
   display: flex;
   width: 928px;
@@ -18,4 +17,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+.box_register div {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -1,15 +1,19 @@
-import logo from "../assets/img/Logo.svg";
-import off from "../assets/img/off.png";
-
+//React
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext } from "react";
+//Contexts
+import { CardCase } from "../components/cardCase.jsx";
+import { CasesContext } from "../contexts/CaseContext";
+//Components
 import { Description } from "../components/texts.js";
 import { InputButton, OffButton } from "../components/buttons.js";
 import { Title } from "../components/titles.js";
+//imgs
+import logo from "../assets/img/Logo.svg";
+import off from "../assets/img/off.png";
 
-import { CardCase } from "../components/cardCase.jsx";
-import { CasesContext } from "../contexts/CaseContext";
 
-import { useNavigate, useParams } from "react-router-dom";
-import { useContext } from "react";
+
 
 export function List() {
   const params = useParams();

@@ -1,8 +1,9 @@
+//React
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
-import logo from "../assets/img/Logo.svg";
-
+//Contexts
+import { CasesContext } from "../contexts/CaseContext";
+//Components
 import { Title, ReturnTitle } from "../components/titles.js";
 import { InputButton } from "../components/buttons.js";
 import {
@@ -10,16 +11,30 @@ import {
   Description,
   DescriptionInput,
 } from "../components/texts.js";
+//imgs
+import logo from "../assets/img/Logo.svg";
+//form
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import { CasesContext } from "../contexts/CaseContext";
+const cardObject = yup.object({
+  title: yup.string().required(),
+  description: yup.string().required(),
+  donation: yup.string().required(),
+});
 
 export function NewCase() {
   const params = useParams();
   const history = useNavigate();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [donation, setDonation] = useState("");
   const { createNewCase } = useContext(CasesContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(cardObject),
+  });
 
   function handleReturn() {
     history(`/list/${params.id}`);
@@ -29,16 +44,12 @@ export function NewCase() {
     history("/");
   }
 
-  function handleCaseRegistry(event) {
-    event.preventDefault();
-    if (title === "" || description === "" || donation === "") {
-      alert("Please fill all the form");
-      return;
-    }
-    createNewCase(title, description, donation, title);
+  const cases = (data) => {
+    createNewCase(data.title, data.description, data.donation, data.title);
 
     history(`/list/${params.id}`);
-  }
+  };
+
   return (
     <>
       <div className="box_register">
@@ -52,41 +63,37 @@ export function NewCase() {
           <ReturnTitle onClick={handleReturnHome}>Voltar para home</ReturnTitle>
         </section>
         <section>
-          <TextInput
-            placeholder="Título do caso"
-            onChange={(event) => setTitle(event.target.value)}
-            value={title}
-          />
-          <DescriptionInput
-            placeholder="Descrição"
-            onChange={(event) => setDescription(event.target.value)}
-            value={description}
-          />
-          <TextInput
-            placeholder="Valor em reais"
-            onChange={(event) => setDonation(event.target.value)}
-            value={donation}
-          />
-          <div>
-            <InputButton
-              style={{
-                width: "168px",
-                background: "transparent",
-                color: "#41414D",
-                fontWeight: "700",
-                border: "1px solid #13131a32",
-              }}
-              onClick={handleReturn}
-            >
-              Cancelar
-            </InputButton>
-            <InputButton
-              style={{ width: "263px", marginLeft: "17px" }}
-              onClick={handleCaseRegistry}
-            >
-              Cadastrar
-            </InputButton>
-          </div>
+          <form onSubmit={handleSubmit(cases)}>
+            <TextInput placeholder="Título do caso" {...register("title")} />
+            <p className="error">{errors.title?.message}</p>
+            <DescriptionInput
+              placeholder="Descrição"
+              {...register("description")}
+            />
+            <p className="error">{errors.description?.message}</p>
+            <TextInput placeholder="Valor em reais" {...register("donation")} />
+            <p className="error">{errors.donation?.message}</p>
+            <div>
+              <InputButton
+                style={{
+                  width: "168px",
+                  background: "transparent",
+                  color: "#41414D",
+                  fontWeight: "700",
+                  border: "1px solid #13131a32",
+                }}
+                onClick={handleReturn}
+              >
+                Cancelar
+              </InputButton>
+              <InputButton
+                type="submit"
+                style={{ width: "263px", marginLeft: "17px" }}
+              >
+                Cadastrar
+              </InputButton>
+            </div>
+          </form>
         </section>
       </div>
     </>

@@ -1,43 +1,48 @@
+//React
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+//Contexts
 import { LoginContext } from "../contexts/LoginContext";
-
-import logo from "../assets/img/Logo.svg";
-
+//Components
 import { Title, ReturnTitle } from "../components/titles.js";
 import { InputButton } from "../components/buttons.js";
 import { TextInput, Description } from "../components/texts.js";
+//imgs
+import logo from "../assets/img/Logo.svg";
+//form
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const userObject = yup.object({
+  ong: yup.string().required(),
+  email: yup.string().email().required(),
+  whatsApp: yup.string().required(),
+  city: yup.string().required(),
+  uf: yup.string().required(),
+});
 
 export function Register() {
   const history = useNavigate();
-
-  const [ong, setOng] = useState("");
-  const [email, setEmail] = useState("");
-  const [whatsApp, setWhatsApp] = useState("");
-  const [city, setCity] = useState("");
-  const [uf, setUF] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(userObject),
+  });
 
   const { createNewUser } = useContext(LoginContext);
+
+  const users = (data) => {
+    createNewUser(data.ong, data.email, data.whatsApp, data.city, data.uf);
+    history(`/list/${data.ong}`);
+  };
 
   function handleReturn() {
     history("/");
   }
 
-  function handleRegistry() {
-    if (
-      ong === "" ||
-      email === "" ||
-      whatsApp === "" ||
-      city === "" ||
-      uf === ""
-    ) {
-      alert("Please fill all the form");
-      return;
-    }
-    createNewUser(ong, email, whatsApp, city, uf);
-    history(`/list/${ong}`);
-  }
   return (
     <>
       <div className="box_register">
@@ -51,41 +56,35 @@ export function Register() {
           <ReturnTitle onClick={handleReturn}>Voltar para o login</ReturnTitle>
         </section>
         <section>
-          <TextInput
-            placeholder="Nome da ONG"
-            onChange={(event) => setOng(event.target.value)}
-            value={ong}
-          />
-          <TextInput
-            placeholder="E-mail"
-            onChange={(event) => setEmail(event.target.value)}
-            value={email}
-          />
-          <TextInput
-            placeholder="WhatsApp"
-            onChange={(event) => setWhatsApp(event.target.value)}
-            value={whatsApp}
-          />
-          <div>
-            <TextInput
-              placeholder="Cidade"
-              style={{ width: "370px" }}
-              onChange={(event) => setCity(event.target.value)}
-              value={city}
-            />
-            <TextInput
-              placeholder="UF"
-              style={{
-                width: "70px",
-                marginLeft: "8px",
-              }}
-              onChange={(event) => setUF(event.target.value)}
-              value={uf}
-            />
-          </div>
-          <InputButton style={{ width: "448px" }} onClick={handleRegistry}>
-            Cadastrar
-          </InputButton>
+          <form onSubmit={handleSubmit(users)}>
+            <TextInput placeholder="Nome da ONG" {...register("ong")} />
+            <p className="error">{errors.ong?.message}</p>
+            <TextInput placeholder="E-mail" {...register("email")} />
+            <p className="error">{errors.email?.message}</p>
+            <TextInput placeholder="WhatsApp" {...register("whatsApp")} />
+            <p className="error">{errors.whatsApp?.message}</p>
+            <div>
+              <TextInput
+                placeholder="Cidade"
+                style={{ width: "370px" }}
+                {...register("city")}
+              />
+
+              <TextInput
+                placeholder="UF"
+                style={{
+                  width: "70px",
+                  marginLeft: "8px",
+                }}
+                // onChange={(event) => setUF(event.target.value)}
+                // value={uf}
+                {...register("uf")}
+              />
+              <p className="error">{errors.city?.message}</p>
+              <p className="error">{errors.uf?.message}</p>
+            </div>
+            <InputButton style={{ width: "448px" }}>Cadastrar</InputButton>
+          </form>
         </section>
       </div>
     </>
