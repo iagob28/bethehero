@@ -32,6 +32,7 @@ export function Home() {
   } = useForm({
     resolver: yupResolver(userObject),
   });
+
   useEffect(() => {
     if (!user) {
       history(`/list/${user.email}`);
@@ -74,6 +75,7 @@ export function Home() {
               autoComplete="current-password"
               {...register("password")}
             />
+            <p className="error">{errors.password?.message}</p>
             <InputButton
               type="submit"
               style={{ width: "351px", height: "60px" }}
