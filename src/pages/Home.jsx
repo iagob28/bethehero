@@ -38,7 +38,7 @@ export function Home() {
       history(`/list/${user.email}`);
     }
     return;
-  }, []);
+  }, [user, history]);
 
   const userData = (data) => {
     try {

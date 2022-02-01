@@ -16,7 +16,7 @@ export function useCases() {
       });
     };
     getData();
-  }, []);
+  }, [user.id]);
 
   return { cases };
 }
