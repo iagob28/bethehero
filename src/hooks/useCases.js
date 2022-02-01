@@ -7,12 +7,15 @@ export function useCases() {
   const [cases, setCases] = useState([]);
   const { user } = useAuth();
 
-  useEffect(async () => {
-    const docRef = await getDocs(collection(database, `${user.id}`));
-    docRef.forEach((cards) => {
-      const casesValue = cards.data();
-      setCases((state) => [...state, casesValue]);
-    });
+  useEffect(() => {
+    const getData = async () => {
+      const docRef = await getDocs(collection(database, `${user.id}`));
+      docRef.forEach((cards) => {
+        const casesValue = cards.data();
+        setCases((state) => [...state, casesValue]);
+      });
+    };
+    getData();
   }, []);
 
   return { cases };

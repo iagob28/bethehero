@@ -1,6 +1,5 @@
 // React
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 //Contexts
 import { CaseContext } from "./contexts/CaseContext.jsx";
 import { AuthContext } from "./contexts/LoginContext.jsx";

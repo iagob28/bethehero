@@ -5,9 +5,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth, database } from "../services/firebase";
+import { auth } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
 
 export const LoginContext = createContext({});
 

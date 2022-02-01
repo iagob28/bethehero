@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { collection, addDoc, setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
 
@@ -15,6 +15,7 @@ export function CaseContext({ children }) {
       donation: donation,
       uid: user.id,
     });
+    return docRef;
   }
   return (
     <CasesContext.Provider value={{ createNewCase }}>

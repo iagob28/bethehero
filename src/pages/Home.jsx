@@ -14,6 +14,7 @@ import imgOmni from "../assets/img/OmniStack11 1.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useEffect } from "react";
 
 export function Home() {
   const history = useNavigate();
@@ -31,10 +32,12 @@ export function Home() {
   } = useForm({
     resolver: yupResolver(userObject),
   });
-
-  if (user) {
-    history(`/list/${user.email}`);
-  }
+  useEffect(() => {
+    if (!user) {
+      history(`/list/${user.email}`);
+    }
+    return;
+  }, []);
 
   const userData = (data) => {
     try {
@@ -63,6 +66,7 @@ export function Home() {
               autoComplete="username"
               {...register("email")}
             />
+            <p className="error">{errors.email?.message}</p>
             <TextInput
               type="password"
               placeholder="Senha"
