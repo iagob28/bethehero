@@ -5,14 +5,16 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "../services/firebase";
+import { auth, database } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
 
 export const LoginContext = createContext({});
 
 export function AuthContext({ children }) {
   const [user, setUser] = useState([]);
   const history = useNavigate();
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -24,6 +26,7 @@ export function AuthContext({ children }) {
         setUser({
           id: uid,
           email: email,
+          cases: [],
         });
         return () => {
           unsubscribe();
@@ -65,7 +68,9 @@ export function AuthContext({ children }) {
       .catch((error) => alert(error));
   }
   return (
-    <LoginContext.Provider value={{ user, createNewUser, auth, userSignIn, userSignOut }}>
+    <LoginContext.Provider
+      value={{ user, createNewUser, auth, userSignIn, userSignOut }}
+    >
       {children}
     </LoginContext.Provider>
   );

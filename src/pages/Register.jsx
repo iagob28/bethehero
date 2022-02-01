@@ -14,17 +14,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const userObject = yup.object({
-  ong: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().required().min(8),
-  whatsApp: yup.string().required(),
-  city: yup.string().required(),
-  uf: yup.string().required(),
-});
-
 export function Register() {
   const history = useNavigate();
+  
+  const userObject = yup.object({
+    ong: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().required().min(8),
+    whatsApp: yup.string().required(),
+    city: yup.string().required(),
+    uf: yup.string().required(),
+  });
   const {
     register,
     handleSubmit,

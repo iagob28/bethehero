@@ -1,9 +1,8 @@
 //React
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 //Contexts
 import { CardCase } from "../components/cardCase.jsx";
-import { CasesContext } from "../contexts/CaseContext";
 import { useAuth } from "../hooks/useAuth";
 //Components
 import { Description } from "../components/texts.js";
@@ -12,13 +11,15 @@ import { Title } from "../components/titles.js";
 //imgs
 import logo from "../assets/img/Logo.svg";
 import off from "../assets/img/off.png";
+//hooks
+import { useCases } from "../hooks/useCases.js";
 
 export function List() {
   const params = useParams();
   const history = useNavigate();
-  const { cases } = useContext(CasesContext);
+  const { cases } = useCases();
   const { user, userSignOut } = useAuth();
-  console.log(user);
+
   useEffect(() => {
     if (user.id === "" || user.id === undefined) {
       history("/");

@@ -18,16 +18,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const cardObject = yup.object({
-  title: yup.string().required(),
-  description: yup.string().required(),
-  donation: yup.string().required(),
-});
-
 export function NewCase() {
   const params = useParams();
   const history = useNavigate();
   const { createNewCase } = useContext(CasesContext);
+  const cardObject = yup.object({
+    title: yup.string().required(),
+    description: yup.string().required(),
+    donation: yup.string().required(),
+  });
   const {
     register,
     handleSubmit,
@@ -45,7 +44,7 @@ export function NewCase() {
   }
 
   const cases = (data) => {
-    createNewCase(data.title, data.description, data.donation, data.title);
+    createNewCase(data.title, data.description, data.donation);
 
     history(`/list/${params.id}`);
   };

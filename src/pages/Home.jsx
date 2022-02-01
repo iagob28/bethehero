@@ -15,14 +15,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const userObject = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().required().min(8),
-});
-
 export function Home() {
   const history = useNavigate();
+
   const { user, userSignIn } = useAuth();
+
+  const userObject = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required().min(8),
+  });
   const {
     register,
     handleSubmit,
@@ -30,9 +31,9 @@ export function Home() {
   } = useForm({
     resolver: yupResolver(userObject),
   });
-  
-  if(user){
-    history(`/list/${user.email}`)
+
+  if (user) {
+    history(`/list/${user.email}`);
   }
 
   const userData = (data) => {
@@ -59,12 +60,14 @@ export function Home() {
               type="text"
               placeholder="E-mail"
               style={{ width: "351px", height: "60px" }}
+              autoComplete="username"
               {...register("email")}
             />
             <TextInput
               type="password"
               placeholder="Senha"
               style={{ width: "351px", height: "60px" }}
+              autoComplete="current-password"
               {...register("password")}
             />
             <InputButton
