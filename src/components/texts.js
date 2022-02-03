@@ -1,41 +1,65 @@
-import styled from "styled-components";
+import { styled } from "@stitches/react";
 
-export const TextInput = styled.input`
-  border: 1.5px solid #dcdce6;
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: 18px;
-  background: #ffffff;
-  margin-top: 8px;
-  height: 60px;
-  width: 448px;
+export const TextInput = styled("input", {
+  border: "1.5px solid #dcdce6",
+  boxSizing: "border-box",
+  borderRadius: "8px",
+  fontSize: "18px",
+  background: "#ffffff",
+  height: "60px",
+  paddingLeft: "8px",
 
-  padding-left: 8px;
+  variants: {
+    size: {
+      small: { width: "70px" },
+      medium: { width: "351px" },
+      default: { width: "370px" },
+      long: { width: "448px" },
+    },
+  },
+  defaultVariants: {
+    size: "default",
+  },
+});
 
-  :focus::placeholder {
-    transition: all 0.5s;
-    transform: translateY(-20px);
-    left: 8px;
-    font-size: 10px;
-  }
-  ::placeholder {
-    color: #a8a8b3;
-    position: relative;
-    left: 24px;
-  }
-`;
+export const Label = styled("label", {
+  display: "flex",
+  background: "transparent",
+  fontSize: "18px",
+  fontWeight: "500",
+  color: "#a8a8b3",
+  position: "absolute",
+  transform: "translate(0, 0) scale(0.7)",
+  transition: "all 0.3s",
 
-export const DescriptionInput = styled(TextInput)`
-  height: 175px;
-  :focus::placeholder {
-    transform: translateY(-70px);
-  }
-`;
+  variants: {
+    position: {
+      low: { transform: "translate(0px, 0px) scale(0.7)" },
+      default: { transform: "translate(0, -20px) scale(0.7)" },
+      high: { transform: "translate(0, 0) scale(0.7)" },
+    },
+  },
 
-export const Description = styled.p`
-  font-weight: 400;
-  fot-size: 18px;
-  margin-top: 40px;
-  color: #737380;
-  background: transparent;
-`;
+  defaultVariants: {
+    position: "default",
+  },
+});
+
+export const DescriptionTextArea = styled("textarea", {
+  border: "1.5px solid #dcdce6",
+  boxSizing: "border-box",
+  borderRadius: "8px",
+  fontSize: "18px",
+  background: "#ffffff",
+  width: "448px",
+  paddingLeft: "8px",
+  height: "175px",
+});
+
+export const Description = styled("p", {
+  fontWeight: "400",
+  fotSize: "18px",
+  width: "380px",
+  color: "#737380",
+  background: "transparent",
+});

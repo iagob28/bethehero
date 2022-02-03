@@ -1,13 +1,18 @@
 .header {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-content: center;
   margin-top: 16px;
+  height: 10vh;
+  width: auto 0;
+  gap: 300px;
 }
 
 .header div {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 8px;
 }
 .divider {
   margin: 16px;
@@ -18,19 +23,23 @@
   filter: opacity(0.2);
 }
 
+.list_body {
+  width: 1100px;
+  margin: auto;
+}
+
 .card_list {
   display: flex;
   flex-wrap: wrap;
 }
 
-.delete_button{
+.delete_button {
   display: flex;
   justify-content: flex-end;
   background: transparent;
 }
 
-.delete_button img{
-  height: 20px;
-  width: auto;
+.button_image {
+  font-size: 30px;
   background: transparent;
 }

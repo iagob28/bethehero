@@ -1,25 +1,24 @@
 //React
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 //Contexts
 import { CardCase } from "../components/cardCase.jsx";
 import { useAuth } from "../hooks/useAuth";
 //Components
 import { Description } from "../components/texts.js";
-import { InputButton, OffButton } from "../components/buttons.js";
+import { Button } from "../components/buttons.js";
 import { Title } from "../components/titles.js";
 //imgs
 import logo from "../assets/img/Logo.svg";
-import off from "../assets/img/off.png";
+import { AiOutlinePoweroff } from "react-icons/ai";
 //hooks
 import { useCases } from "../hooks/useCases.js";
 import { onAuthStateChanged } from "firebase/auth";
 
 export function List() {
-  const params = useParams();
   const history = useNavigate();
   const { cases } = useCases();
-  const { auth, userSignOut } = useAuth();
+  const { auth, userSignOut, user } = useAuth();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -33,7 +32,7 @@ export function List() {
   }, [auth, history]);
 
   function handleCreateCase() {
-    history(`/list/${params.id}/newcase`);
+    history(`/list/newcase`);
   }
 
   function handleOff() {
@@ -41,28 +40,22 @@ export function List() {
   }
   return (
     <>
-      <div></div>
       <header className="header">
         <div>
           <img src={logo} alt="" style={{ width: "144px" }} />
-          <Description style={{ margin: "0 0 0 8px" }}>
-            Bem vinda(o), {params.id}
-          </Description>
+          <Description>Bem vinda(o), {user.email}</Description>
         </div>
         <div>
-          <InputButton
-            style={{ width: "262px", height: "60px", margin: "0 0 0 8px" }}
-            onClick={handleCreateCase}
-          >
+          <Button size="medium" outline="none" onClick={handleCreateCase}>
             Cadastrar novo Caso
-          </InputButton>
-          <OffButton style={{ margin: "0 0 0 8px" }} onClick={handleOff}>
-            <img src={off} alt="" />
-          </OffButton>
+          </Button>
+          <Button size="tiny" color="transparent" innerSize="big" onClick={handleOff}>
+            <AiOutlinePoweroff fill="#e02041" />
+          </Button>
         </div>
       </header>
       <div className="divider"></div>
-      <section style={{ margin: "0 160px 0 160px" }}>
+      <section className="list_body">
         <Title>Casos cadastrados</Title>
         <div className="card_list">
           {cases.map((card) => {

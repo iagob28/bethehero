@@ -5,17 +5,20 @@ import { onAuthStateChanged } from "firebase/auth";
 //Contexts
 
 //Components
-import { TextInput } from "../components/texts.js";
+import { Label, TextInput } from "../components/texts.js";
 import { Title, LinkTitle } from "../components/titles.js";
-import { InputButton } from "../components/buttons.js";
+import { Button } from "../components/buttons.js";
 //imgs
 import logo from "../assets/img/Logo.svg";
 import imgOmni from "../assets/img/OmniStack11 1.png";
+import { MdLogin } from "react-icons/md";
 //form
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useEffect } from "react";
+//css
+import "../styles/Home.css";
 
 export function Home() {
   const history = useNavigate();
@@ -37,7 +40,7 @@ export function Home() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        history(`/list/${user.email}`);
+        history(`/list`);
       } else {
         return;
       }
@@ -61,34 +64,42 @@ export function Home() {
   return (
     <>
       <div className="container">
-        <section>
+        <section className="home_left">
           <img src={logo} alt="Logo Be The Hero" />
           <Title>Faça seu login</Title>
           <form onSubmit={handleSubmit(userData)}>
-            <TextInput
-              type="text"
-              placeholder="E-mail"
-              style={{ width: "351px", height: "60px" }}
-              autoComplete="username"
-              {...register("email")}
-            />
-            <p className="error">{errors.email?.message}</p>
-            <TextInput
-              type="password"
-              placeholder="Senha"
-              style={{ width: "351px", height: "60px" }}
-              autoComplete="current-password"
-              {...register("password")}
-            />
-            <p className="error">{errors.password?.message}</p>
-            <InputButton
-              type="submit"
-              style={{ width: "351px", height: "60px" }}
-            >
+            <div className="float_label">
+              <TextInput
+                size="medium"
+                type="text"
+                autoComplete="username"
+                {...register("email")}
+              />
+              <Label position="low" htmlFor="text">
+                Entrar
+              </Label>
+              <p className="error">{errors.email?.message}</p>
+            </div>
+            <div className="float_label">
+              <TextInput
+                size="medium"
+                type="password"
+                autoComplete="current-password"
+                {...register("password")}
+              />
+              <Label position="low" htmlFor="text">
+                Senha
+              </Label>
+              <p className="error">{errors.password?.message}</p>
+            </div>
+
+            <Button type="submit" size="default" outline="none">
               Entrar
-            </InputButton>
-            <LinkTitle onClick={registerPath}>Não tenho cadastro</LinkTitle>
+            </Button>
           </form>
+          <LinkTitle onClick={registerPath} className="link">
+            <MdLogin fill="#e02041" /> Não tenho cadastro
+          </LinkTitle>
         </section>
         <section>
           <img

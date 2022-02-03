@@ -1,16 +1,18 @@
 .loader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   position: fixed;
   height: 100vh;
   width: 100%;
   background: #0000008e;
   top: 0;
+  align-self: center;
 }
 .loader_wheel {
   display: flex;
-  position: fixed;
+  align-self: center;
   background: transparent;
-  top: 280px;
-  left: 600px;
   border: 8px solid #f3f3f383;
   border-radius: 50%;
   border-top: 8px solid #e02041;

@@ -5,6 +5,7 @@ import deleteButton from "../assets/img/delete.svg";
 import { useContext } from "react";
 import { CasesContext } from "../contexts/CaseContext.jsx";
 import { useAuth } from "../hooks/useAuth.js";
+import { AiFillDelete } from "react-icons/ai";
 
 export function CardCase(card) {
   const { deleteCase } = useContext(CasesContext);
@@ -19,7 +20,7 @@ export function CardCase(card) {
       <div className="card_case" style={{ margin: "12px" }}>
         <header className="delete_button">
           <DeleteButton onClick={handleDeleteCase}>
-            <img src={deleteButton} alt="delete case button" />
+            <AiFillDelete fill="#e02041" className="button_image"/>
           </DeleteButton>
         </header>
         <section style={{ background: "transparent" }}>

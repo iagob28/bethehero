@@ -25,8 +25,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/list/:id/*" element={<List />} />
-              <Route path="/list/:id/newcase/*" element={<NewCase />} />
+              <Route path="/list/" element={<List />} />
+              <Route path="/list/newcase/" element={<NewCase />} />
             </Routes>
           </CaseContext>
         </AuthContext>

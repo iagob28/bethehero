@@ -54,7 +54,7 @@ export function AuthContext({ children }) {
           id: userCredential.user.uid,
           email: userCredential.user.email,
         });
-        history(`/list/${email}`);
+        history(`/list/`);
       })
       .catch((error) => {
         alert("E-mail or password are incorrect");
