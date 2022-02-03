@@ -1,7 +1,6 @@
 import { DeleteButton } from "./buttons.js";
 import { Description } from "./texts.js";
 import { SecondTitle } from "./titles.js";
-import deleteButton from "../assets/img/delete.svg";
 import { useContext } from "react";
 import { CasesContext } from "../contexts/CaseContext.jsx";
 import { useAuth } from "../hooks/useAuth.js";
@@ -20,7 +19,7 @@ export function CardCase(card) {
       <div className="card_case" style={{ margin: "12px" }}>
         <header className="delete_button">
           <DeleteButton onClick={handleDeleteCase}>
-            <AiFillDelete fill="#e02041" className="button_image"/>
+            <AiFillDelete fill="#e02041" className="button_image" />
           </DeleteButton>
         </header>
         <section style={{ background: "transparent" }}>
