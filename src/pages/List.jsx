@@ -24,7 +24,6 @@ export function List() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        alert("User not logged in");
         history("/");
       } else {
         return;
