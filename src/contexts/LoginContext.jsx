@@ -13,6 +13,7 @@ export const LoginContext = createContext({});
 export function AuthContext({ children }) {
   const [user, setUser] = useState([]);
   const history = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -35,15 +36,18 @@ export function AuthContext({ children }) {
   }, []);
 
   async function createNewUser(email, password) {
+    setIsLoading(true);
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
         console.log(userCredential.user);
       })
       .catch((error) => console.log(error));
+    setIsLoading(false);
   }
 
   function userSignIn(email, password) {
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser({
@@ -68,7 +72,15 @@ export function AuthContext({ children }) {
   }
   return (
     <LoginContext.Provider
-      value={{ user, createNewUser, auth, userSignIn, userSignOut }}
+      value={{
+        user,
+        createNewUser,
+        auth,
+        userSignIn,
+        userSignOut,
+        isLoading,
+        setIsLoading,
+      }}
     >
       {children}
     </LoginContext.Provider>

@@ -13,6 +13,7 @@ import { Home } from "./pages/Home.jsx";
 import { Register } from "./pages/Register.jsx";
 import { List } from "./pages/List.jsx";
 import { NewCase } from "./pages/NewCase.jsx";
+import { Loading } from "./pages/Loading.jsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <BrowserRouter>
         <AuthContext>
           <CaseContext>
+            <Loading />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
