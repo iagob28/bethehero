@@ -38,5 +38,4 @@ export const Description = styled.p`
   margin-top: 40px;
   color: #737380;
   background: transparent;
-  flex-wrap: wrap;
 `;
