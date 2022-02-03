@@ -12,7 +12,6 @@ export function useCases() {
   useEffect(() => {
     setIsLoading(true);
     const getData = async () => {
-      // const docRef = await getDocs(collection(database, `${user.id}`));
       const unsub = onSnapshot(collection(database, `${user.id}`), async () => {
         const docRef = await getDocs(collection(database, `${user.id}`));
         const parsedCases = docRef.docs.map((document) => {
@@ -29,18 +28,9 @@ export function useCases() {
       return () => {
         unsub();
       };
-      // const parsedCases = docRef.docs.map((document) => {
-      //   return {
-      //     description: document.data().description,
-      //     title: document.data().title,
-      //     donation: document.data().donation,
-      //     id: document.id,
-      //   };
-      // });
-      // setCases(parsedCases);
     };
     return getData();
-  }, [user.id]);
+  }, [user.id, setIsLoading]);
 
   return { cases };
 }
