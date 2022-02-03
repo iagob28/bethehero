@@ -30,7 +30,7 @@ export function List() {
       }
     });
     return;
-  }, [auth]);
+  }, [auth, history]);
 
   function handleCreateCase() {
     history(`/list/${params.id}/newcase`);

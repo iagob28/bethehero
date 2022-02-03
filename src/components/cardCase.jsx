@@ -2,7 +2,7 @@ import { DeleteButton } from "./buttons.js";
 import { Description } from "./texts.js";
 import { SecondTitle } from "./titles.js";
 import deleteButton from "../assets/img/delete.svg";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CasesContext } from "../contexts/CaseContext.jsx";
 import { useAuth } from "../hooks/useAuth.js";
 

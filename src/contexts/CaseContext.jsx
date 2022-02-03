@@ -1,12 +1,5 @@
 import { createContext } from "react";
-import {
-  collection,
-  addDoc,
-  deleteDoc,
-  doc,
-  query,
-  getDocs,
-} from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
 
@@ -26,7 +19,7 @@ export function CaseContext({ children }) {
   async function deleteCase(id, userId) {
     await deleteDoc(doc(database, `${userId}`, `${id}`));
   }
-  
+
   return (
     <CasesContext.Provider value={{ createNewCase, deleteCase }}>
       {children}
