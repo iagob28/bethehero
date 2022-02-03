@@ -22,3 +22,15 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.delete_button{
+  display: flex;
+  justify-content: end;
+  background: transparent;
+}
+
+.delete_button img{
+  height: 20px;
+  width: auto;
+  background: transparent;
+}

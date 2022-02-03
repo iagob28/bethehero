@@ -34,3 +34,20 @@ export const OffButton = styled.button`
     border: 3px solid #e02041;
   }
 `;
+
+export const DeleteButton = styled.button`
+  background: transparent;
+  height: 20px;
+  width: auto;
+  border: none;
+  border-radius: 8px;
+
+  :hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #13131a32;
+  }
+
+  :active {
+    background: #e02041;
+  }
+`;

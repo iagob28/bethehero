@@ -1,6 +1,7 @@
 //React
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { onAuthStateChanged } from "firebase/auth";
 //Contexts
 
 //Components
@@ -19,7 +20,7 @@ import { useEffect } from "react";
 export function Home() {
   const history = useNavigate();
 
-  const { user, userSignIn } = useAuth();
+  const { userSignIn, auth } = useAuth();
 
   const userObject = yup.object({
     email: yup.string().email().required(),
@@ -34,11 +35,15 @@ export function Home() {
   });
 
   useEffect(() => {
-    if (!user) {
-      history(`/list/${user.email}`);
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        history(`/list/${user.email}`);
+      } else {
+        return;
+      }
+    });
     return;
-  }, [user, history]);
+  }, [auth, history]);
 
   const userData = (data) => {
     try {

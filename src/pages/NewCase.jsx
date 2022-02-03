@@ -66,6 +66,7 @@ export function NewCase() {
             <TextInput placeholder="Título do caso" {...register("title")} />
             <p className="error">{errors.title?.message}</p>
             <DescriptionInput
+              type="text"
               placeholder="Descrição"
               {...register("description")}
             />

@@ -27,7 +27,6 @@ export const TextInput = styled.input`
 
 export const DescriptionInput = styled(TextInput)`
   height: 175px;
-
   :focus::placeholder {
     transform: translateY(-70px);
   }
@@ -39,4 +38,5 @@ export const Description = styled.p`
   margin-top: 40px;
   color: #737380;
   background: transparent;
+  flex-wrap: wrap;
 `;

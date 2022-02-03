@@ -13,18 +13,25 @@ import logo from "../assets/img/Logo.svg";
 import off from "../assets/img/off.png";
 //hooks
 import { useCases } from "../hooks/useCases.js";
+import { onAuthStateChanged } from "firebase/auth";
 
 export function List() {
   const params = useParams();
   const history = useNavigate();
   const { cases } = useCases();
-  const { user, userSignOut } = useAuth();
+  const { auth, userSignOut } = useAuth();
 
   useEffect(() => {
-    if (user.id === "" || user.id === undefined) {
-      history("/");
-    }
-  });
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        alert("User not logged in");
+        history("/");
+      } else {
+        return;
+      }
+    });
+    return;
+  }, [auth]);
 
   function handleCreateCase() {
     history(`/list/${params.id}/newcase`);
@@ -65,7 +72,8 @@ export function List() {
                 title={card.title}
                 description={card.description}
                 donation={card.donation}
-                key={card.title}
+                id={card.id}
+                key={card.id}
               />
             );
           })}

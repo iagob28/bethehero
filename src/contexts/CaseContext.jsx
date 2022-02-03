@@ -1,5 +1,12 @@
 import { createContext } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  query,
+  getDocs,
+} from "firebase/firestore";
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
 
@@ -13,12 +20,15 @@ export function CaseContext({ children }) {
       title: title,
       description: description,
       donation: donation,
-      uid: user.id,
     });
     return docRef;
   }
+  async function deleteCase(id, userId) {
+    await deleteDoc(doc(database, `${userId}`, `${id}`));
+  }
+  
   return (
-    <CasesContext.Provider value={{ createNewCase }}>
+    <CasesContext.Provider value={{ createNewCase, deleteCase }}>
       {children}
     </CasesContext.Provider>
   );
