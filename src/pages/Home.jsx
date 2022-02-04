@@ -22,12 +22,14 @@ import "../styles/Home.css";
 
 export function Home() {
   const history = useNavigate();
-
   const { userSignIn, auth } = useAuth();
 
   const userObject = yup.object({
-    email: yup.string().email().required(),
-    password: yup.string().required().min(8),
+    email: yup
+      .string()
+      .email("Utilize um e-mail válido")
+      .required("E-mail precisa ser preenchido"),
+    password: yup.string().required("Senha precisa ser preenchida").min(8),
   });
   const {
     register,
@@ -75,7 +77,7 @@ export function Home() {
                 autoComplete="username"
                 {...register("email")}
               />
-              <Label position="low" htmlFor="text">
+              <Label active="off" htmlFor="text">
                 Entrar
               </Label>
               <p className="error">{errors.email?.message}</p>
@@ -87,9 +89,7 @@ export function Home() {
                 autoComplete="current-password"
                 {...register("password")}
               />
-              <Label position="low" htmlFor="text">
-                Senha
-              </Label>
+              <Label htmlFor="password">Senha</Label>
               <p className="error">{errors.password?.message}</p>
             </div>
 

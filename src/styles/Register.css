@@ -37,7 +37,6 @@
 
 .split_area {
   display: flex;
-  flex-wrap: wrap;
   width: 448px;
   justify-content: space-between;
   gap: 8px;

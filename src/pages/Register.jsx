@@ -19,12 +19,18 @@ export function Register() {
   const history = useNavigate();
 
   const userObject = yup.object({
-    ong: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().required().min(8),
-    whatsApp: yup.string().required(),
-    city: yup.string().required(),
-    uf: yup.string().required(),
+    ong: yup.string().required("Nome da ONG precisa ser preenchido"),
+    email: yup
+      .string()
+      .email("E-mail precisa ser válido")
+      .required("E-mail precisa ser preenchido"),
+    password: yup
+      .string()
+      .required("Senha precisa ser preenchido")
+      .min(8, "Senha precisa de pelo menos 8 digitos"),
+    whatsApp: yup.string().required("Whats App precisa ser preenchido"),
+    city: yup.string().required("Cidade precisa ser preenchida"),
+    uf: yup.string().required("UF precisa ser preenchido"),
   });
   const {
     register,
@@ -71,13 +77,13 @@ export function Register() {
               {/* Nome da Ong */}
               <div className="float_label">
                 <TextInput size="long" {...register("ong")} />
-                <Label position="low">Nome da ONG</Label>
+                <Label>Nome da ONG</Label>
                 <p className="error">{errors.ong?.message}</p>
               </div>
               {/* Email */}
               <div className="float_label">
                 <TextInput size="long" {...register("email")} />
-                <Label position="low">E-mail</Label>
+                <Label>E-mail</Label>
                 <p className="error">{errors.email?.message}</p>
               </div>
               {/* Senha */}
@@ -87,26 +93,26 @@ export function Register() {
                   type="password"
                   {...register("password")}
                 />
-                <Label position="low">Senha</Label>
+                <Label>Senha</Label>
                 <p className="error">{errors.password?.message}</p>
               </div>
               {/* whatsapp */}
               <div className="float_label">
                 <TextInput size="long" {...register("whatsApp")} />
-                <Label position="low">WhatsApp</Label>
+                <Label>WhatsApp</Label>
                 <p className="error">{errors.whatsApp?.message}</p>
               </div>
               <div className="split_area">
                 {/* cidade */}
                 <div className="float_label">
                   <TextInput {...register("city")} />
-                  <Label position="low">Cidade</Label>
+                  <Label>Cidade</Label>
                   <p className="error">{errors.city?.message}</p>
                 </div>
                 {/* UF */}
                 <div className="float_label">
                   <TextInput size="small" {...register("uf")} />
-                  <Label position="low">UF</Label>
+                  <Label>UF</Label>
                   <p className="error">{errors.uf?.message}</p>
                 </div>
               </div>

@@ -36,9 +36,12 @@
 }
 
 .error {
+  display: flex;
+  flex-direction: column;
   color: #e02041;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 12px;
+  margin: 4px;
 }
 
 .float_label {
@@ -47,3 +50,7 @@
   position: relative;
 }
 
+
+.float_label:focus-within label {
+  transform: translate(0, 0) scale(0.7);
+}

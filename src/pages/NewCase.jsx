@@ -24,9 +24,9 @@ export function NewCase() {
   const history = useNavigate();
   const { createNewCase } = useContext(CasesContext);
   const cardObject = yup.object({
-    title: yup.string().required(),
-    description: yup.string().required(),
-    donation: yup.string().required(),
+    title: yup.string().required("Titulo do caso precisa ser preenchido"),
+    description: yup.string().required("Descrição precisa ser preenchida"),
+    donation: yup.string().required("Valor precisa ser preenchido"),
   });
   const {
     register,
