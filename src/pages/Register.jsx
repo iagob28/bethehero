@@ -45,11 +45,12 @@ export function Register() {
   const users = async (data) => {
     try {
       await createNewUser(data.email, data.password);
+      alert("Cadastro efetuado com sucesso")
     } catch (error) {
       alert(error);
       return;
     }
-    history(`/list/${data.ong}`);
+    history(`/`);
   };
 
   function handleReturn() {

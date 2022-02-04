@@ -42,7 +42,10 @@ export function AuthContext({ children }) {
         setUser(userCredential.user);
         console.log(userCredential.user);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
     setIsLoading(false);
   }
 
@@ -57,6 +60,7 @@ export function AuthContext({ children }) {
         history(`/list/`);
       })
       .catch((error) => {
+        setIsLoading(false);
         alert("E-mail or password are incorrect");
         return;
       });

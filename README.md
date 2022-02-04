@@ -9,6 +9,6 @@ can see all the cases and choose one to help.
 https://bethehero-zeta.vercel.app
 
 ## Preview
-![bethehero](https://user-images.githubusercontent.com/61669995/151429426-1903bef1-1773-4575-9007-73f51c3d64fb.JPG)
+![Capturar](https://user-images.githubusercontent.com/61669995/152567995-c5d961c2-41e2-40dc-993e-8af315bec838.JPG)
 
 #### Thank you for seeing!
