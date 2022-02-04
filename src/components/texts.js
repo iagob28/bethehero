@@ -30,23 +30,7 @@ export const Label = styled("label", {
   color: "#a8a8b3",
   position: "absolute",
   transition: "all 0.3s",
-
-  variants: {
-    position: {
-      low: { transform: "translate(8px, 10px) scale(1)" },
-      default: { transform: "translate(8px, 16px) scale(1)" },
-      high: { transform: "translate(8px, 70px) scale(1)" },
-    },
-    active: {
-      on: { transform: "translate(0px, 0px) scale(0.7)" },
-      off: {},
-    },
-  },
-
-  defaultVariants: {
-    position: "default",
-    active: "off",
-  },
+  transform: "translate(0px, 0px) scale(0.7)",
 });
 
 export const DescriptionTextArea = styled("textarea", {
